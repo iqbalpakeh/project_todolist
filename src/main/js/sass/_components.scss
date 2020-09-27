@@ -1,0 +1,406 @@
+// --------------------------------------------------
+// LOGO
+// --------------------------------------------------
+
+.logo {
+	height: 3.25rem;
+	margin-left: 2rem;
+}
+
+// --------------------------------------------------
+// SEARCH
+// --------------------------------------------------
+
+.search {
+	// let this area fullfill 40% width of parent
+	flex: 0 0 40%;
+
+	// use display flex to center the children
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@media only screen and (max-width: $bp-smallest) {
+		order: 1;
+		flex: 0 0 100%;
+		background-color: var(--color-grey-light-2);
+	}
+
+	&__input {
+		font-family: inherit;
+		font-size: inherit;
+		background-color: var(--color-grey-light-2);
+		border: none;
+		padding: 0.7rem 2rem;
+		border-radius: 100px;
+		width: 90%;
+		transition: all 0.2s;
+		// to position search button inside search bar
+		margin-right: -3.25rem;
+
+		&:focus {
+			outline: none;
+			width: 100%;
+			background-color: var(--color-grey-light-3);
+		}
+
+		// This only works on Chrome and Safari browser
+		&::-webkit-input-placeholder {
+			font-weight: 100;
+			color: var(--color-grey-light-4);
+		}
+	}
+
+	// change .search__button background color when .search__input
+	// state change to focus.
+	&__input:focus + &__button {
+		background-color: var(--color-grey-light-3);
+	}
+
+	&__button {
+		border: none;
+		background-color: var(--color-grey-light-2);
+
+		&:focus {
+			outline: none;
+		}
+
+		&:active {
+			transform: translateY(2px);
+		}
+	}
+
+	&__icon {
+		height: 2rem;
+		width: 2rem;
+		// Change SVG icon color
+		fill: var(--color-grey-dark-3);
+	}
+}
+
+// --------------------------------------------------
+// USER NAVIGATION
+// --------------------------------------------------
+
+.user-nav {
+	// flex property to makesure the background color of each item
+	// fill full-heigh of parent height.
+	align-self: stretch;
+
+	// turn to display flex container to align the children
+	display: flex;
+	align-items: center;
+
+	// select all direct chilren of .user_nav
+	& > * {
+		padding: 2rem;
+		cursor: pointer;
+		height: 100%;
+
+		// to let children align with main axis
+		display: flex;
+		align-items: center;
+	}
+
+	// select all direct chilren of .user_nav when hovered
+	& > *:hover {
+		background-color: var(--color-grey-light-2);
+	}
+
+	& > *:active {
+		background-color: var(--color-grey-light-3);
+	}
+
+	&__icon-box {
+		// position the notification "above" the icon
+		position: relative;
+	}
+
+	&__icon {
+		height: 2.25rem;
+		width: 2.25rem;
+		// Change SVG icon color
+		fill: var(--color-grey-dark-2);
+	}
+
+	&__notification {
+		font-size: 0.8rem;
+		height: 1.75rem;
+		width: 1.75rem;
+		border-radius: 50%;
+		background-color: var(--color-primary);
+		color: #fff;
+		// position the notification "above" the icon
+		position: absolute;
+		top: 1.5rem;
+		right: 1.1rem;
+		// position the text right in the center of circle
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__user-photo {
+		height: 3.75rem;
+		border-radius: 50%;
+		margin-right: 1rem;
+	}
+}
+
+// --------------------------------------------------
+// SIDE NAVIGATION
+// --------------------------------------------------
+
+.side-nav {
+	font-size: 1.4rem;
+	list-style: none;
+	margin-top: 3.5rem;
+
+	@media only screen and (max-width: $bp-medium) {
+		display: flex;
+		margin: 0;
+	}
+
+	&__item {
+		position: relative;
+
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+
+			@media only screen and (max-width: $bp-medium) {
+				margin-bottom: 0;
+			}
+		}
+
+		@media only screen and (max-width: $bp-medium) {
+			flex: 1;
+		}
+	}
+
+	&__item::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 3px;
+		background-color: var(--color-primary);
+		transform: scaleY(0);
+		transform-origin: bottom;
+		transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+			background-color 0.1s;
+	}
+
+	&__item:hover::before,
+	&__item--active::before {
+		transform: scaleY(1);
+		width: 100%;
+	}
+
+	&__item:active::before {
+		background-color: var(--color-primary-light);
+	}
+
+	&__link:link,
+	&__link:visited {
+		color: var(--color-grey-light-1);
+		text-decoration: none;
+		text-transform: uppercase;
+		display: block;
+		padding: 1.5rem 3rem;
+
+		// to show the icon and text after the animation
+		position: relative;
+		z-index: 10;
+
+		// align children to center axis
+		display: flex;
+		align-items: center;
+
+		@media only screen and (max-width: $bp-medium) {
+			justify-content: center;
+			padding: 2rem;
+		}
+
+		@media only screen and (max-width: $bp-small) {
+			flex-direction: column;
+			padding: 1.5rem 0.5rem;
+		}
+	}
+
+	&__icon {
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-right: 2rem;
+		// get color of parent
+		fill: currentColor;
+
+		@media only screen and (max-width: $bp-small) {
+			margin-right: 0;
+			margin-bottom: 0.7rem;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+}
+
+// --------------------------------------------------
+// TODO ADD
+// --------------------------------------------------
+
+.todo-add {
+	background-color: #fff;
+	box-shadow: var(--shadow-light);
+	padding-left: 2rem;
+	margin: 4rem 4rem 0rem 4rem;
+
+	//set parent div to have flexbox display
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__content {
+		font-size: 2rem;
+		font-weight: 300;
+		letter-spacing: 1px;
+
+		outline: 0;
+		border-width: 0 0 2px;
+		flex: auto;
+
+		// This only works on Chrome and Safari browser
+		&::-webkit-input-placeholder {
+			font-weight: 100;
+			color: var(--color-grey-dark-3);
+		}
+
+		@media only screen and (max-width: $bp-small) {
+			font-size: 1.8rem;
+			padding: 1.25rem 2rem;
+		}
+	}
+
+	&__nav {
+		// flex property to makesure the background color of each item
+		// fill full-heigh of parent height.
+		align-self: stretch;
+
+		// turn to display flex container to align the children
+		display: flex;
+		align-items: center;
+
+		// select all direct chilren of .user_nav
+		& > * {
+			padding: 2rem;
+			cursor: pointer;
+			height: 100%;
+
+			// to let children align with main axis
+			display: flex;
+			align-items: center;
+		}
+
+		// select all direct chilren of .user_nav when hovered
+		& > *:hover {
+			background-color: var(--color-grey-light-2);
+		}
+
+		& > *:active {
+			background-color: var(--color-grey-light-3);
+		}
+
+		&__icon-box {
+			// position the notification "above" the icon
+			position: relative;
+		}
+
+		&__icon {
+			height: 2.25rem;
+			width: 2.25rem;
+			// Change SVG icon color
+			fill: var(--color-grey-dark-2);
+		}
+	}
+}
+
+// --------------------------------------------------
+// TODO ITEM
+// --------------------------------------------------
+
+.todo-item {
+	background-color: #fff;
+	box-shadow: var(--shadow-light);
+	padding-left: 2rem;
+	margin: 4rem 4rem 0rem 4rem;
+
+	&:last-child {
+		margin: 4rem 4rem 4rem 4rem;
+	}
+
+	//set parent div to have flexbox display
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	@media only screen and (max-width: $bp-medium) {
+		padding: 2rem;
+		margin-right: 3rem;
+	}
+
+	@media only screen and (max-width: $bp-small) {
+		margin: 0 0 2rem 0;
+	}
+
+	&__content {
+		font-size: 2rem;
+		font-weight: 300;
+		letter-spacing: 1px;
+
+		@media only screen and (max-width: $bp-small) {
+			font-size: 1.8rem;
+			padding: 1.25rem 2rem;
+		}
+	}
+
+	&__nav {
+		// flex property to makesure the background color of each item
+		// fill full-heigh of parent height.
+		align-self: stretch;
+
+		// turn to display flex container to align the children
+		display: flex;
+		align-items: center;
+
+		// select all direct chilren of .user_nav
+		& > * {
+			padding: 2rem;
+			cursor: pointer;
+			height: 100%;
+
+			// to let children align with main axis
+			display: flex;
+			align-items: center;
+		}
+
+		// select all direct chilren of .user_nav when hovered
+		& > *:hover {
+			background-color: var(--color-grey-light-2);
+		}
+
+		& > *:active {
+			background-color: var(--color-grey-light-3);
+		}
+
+		&__icon-box {
+			// position the notification "above" the icon
+			position: relative;
+		}
+
+		&__icon {
+			height: 2.25rem;
+			width: 2.25rem;
+			// Change SVG icon color
+			fill: var(--color-grey-dark-2);
+		}
+	}
+}

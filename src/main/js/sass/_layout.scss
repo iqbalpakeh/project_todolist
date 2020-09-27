@@ -1,0 +1,70 @@
+.container {
+	max-width: 120rem;
+	margin: 8rem auto;
+	background-color: var(--color-grey-light-1);
+	box-shadow: var(--shadow-dark);
+
+	@media only screen and (max-width: $bp-largest) {
+		margin: 0;
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.header {
+	font-size: 1.4rem;
+	height: 7rem;
+	background-color: #fff;
+	border-bottom: var(--line);
+
+	//set parent div to have flexbox display
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	@media only screen and (max-width: $bp-smallest) {
+		flex-wrap: wrap;
+		align-content: space-around;
+		height: 11rem;
+	}
+}
+
+.content {
+	//set parent div to have flexbox display
+	display: flex;
+
+	@media only screen and (max-width: $bp-medium) {
+		// put sidebar on top of the content!
+		flex-direction: column;
+	}
+
+	//dummy
+	min-height: 60rem;
+}
+
+.sidebar {
+	background-color: var(--color-grey-dark-1);
+
+	// define .sidebar width using flexbox
+	// to have width 18% from parent width which is .content
+	flex: 0 0 18%;
+
+	// set this as flex container
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.main-view {
+	background-color: #fff;
+
+	// define .hotel-view width using flexbox (flexbox-grow)
+	// to grow on the remaining parent width (100% - 18% = 82%)
+	flex: 1;
+}
+
+.todos-view {
+	border-bottom: var(--line);
+	flex-direction: column;
+	flex: auto;
+}
